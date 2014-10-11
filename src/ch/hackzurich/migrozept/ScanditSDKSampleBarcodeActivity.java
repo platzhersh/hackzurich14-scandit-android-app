@@ -123,7 +123,7 @@ public class ScanditSDKSampleBarcodeActivity extends Activity implements Scandit
     
     // Enter your Scandit SDK App key here.
     // Your Scandit SDK App key is available via your Scandit SDK web account.
-    public static final String sScanditSdkAppKey = "oV/Wzk5DEeSQUeGdK5vfsPz8+7BrOnfnciXpNvsI0qM";
+    public static final String sScanditSdkAppKey = "--place your Scandit SDK key here --";
     
     /* TODO: get API Key out of AndroidManifest (doesn't work yet, somehow)
     Context _context = getApplicationContext();

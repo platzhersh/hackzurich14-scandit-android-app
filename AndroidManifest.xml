@@ -51,7 +51,7 @@
         <!-- Scandit SDK key -->
         <meta-data
             android:name="sCanditSdkAppKey"
-            android:value="oV/Wzk5DEeSQUeGdK5vfsPz8+7BrOnfnciXpNvsI0qM" />
+            android:value="--place your Scandit SDK key here --" />
 
         <activity
             android:name="ch.hackzurich.migrozept.RecipeListActivity"
