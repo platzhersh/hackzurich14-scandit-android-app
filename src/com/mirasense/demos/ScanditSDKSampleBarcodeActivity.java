@@ -1,8 +1,12 @@
 package com.mirasense.demos;
 
+import java.net.URL;
+
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +20,7 @@ import android.widget.Toast;
 import com.mirasense.scanditsdk.ScanditSDKAutoAdjustingBarcodePicker;
 import com.mirasense.scanditsdk.interfaces.ScanditSDK;
 import com.mirasense.scanditsdk.interfaces.ScanditSDKListener;
+import com.mirasense.util.APIWorker;
 
 /**
  * Simple Activity illustrating how to embed the Scandit SDK.
@@ -107,6 +112,8 @@ public class ScanditSDKSampleBarcodeActivity extends Activity implements Scandit
     private ScanditSDK mBarcodePicker;
     private Button mButton = null;
     
+    
+    
     // Enter your Scandit SDK App key here.
     // Your Scandit SDK App key is available via your Scandit SDK web account.
     public static final String sScanditSdkAppKey = "--- ENTER YOUR SCANDIT APP KEY ---";
@@ -121,7 +128,7 @@ public class ScanditSDKSampleBarcodeActivity extends Activity implements Scandit
 
         // Initialize and start the bar code recognition.
         initializeAndStartBarcodeScanning();
-    }
+        }
     
     @Override
     protected void onPause() {
@@ -187,16 +194,28 @@ public class ScanditSDKSampleBarcodeActivity extends Activity implements Scandit
             }
         }
         
+        Log.i("custom", "Send Barcode to API " + cleanedBarcode);
+        
+        String url = "http://hackzurich14.herokuapp.com/api/"+cleanedBarcode;
+        try {
+        	new APIWorker(this).execute(new URL(url));
+        } catch (Exception e) {
+        	//showAlert("Exception",e.toString());
+        	showToast("API Worker call Exception");
+        }
+        
+    			
         mButton = new Button(this);
         mButton.setTextColor(Color.WHITE);
         mButton.setTextSize(30);
         mButton.setGravity(Gravity.CENTER);
         mButton.setBackgroundColor(0xFF000000);
-        mButton.setText("Scanned " + symbology + " code:\n\n" + cleanedBarcode + "\n\n\n\nTap to continue");
+        mButton.setText("Scanned " + symbology + " code:\n\n" + cleanedBarcode + "\n");
         ((RelativeLayout) mBarcodePicker).addView(
         		mButton, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         mBarcodePicker.pauseScanning();
 
+        // TODO: go to recipe overview
         mButton.setOnClickListener(new OnClickListener() {
         	@Override
         	public void onClick(View v) {
@@ -246,4 +265,17 @@ public class ScanditSDKSampleBarcodeActivity extends Activity implements Scandit
         mBarcodePicker.stopScanning();
         finish();
     }
+    
+    
+    
+    
+    /* Notifications / Alerts */
+    public void showToast(String txt) {
+    	Context context = getApplicationContext();
+    	CharSequence text = txt;
+    	int duration = 10;
+
+    	Toast toast = Toast.makeText(context, text, duration);
+    	toast.show();
+    }    
 }

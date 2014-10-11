@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import com.mirasense.scanditsdk.ScanditSDKBarcodePicker;
 import com.mirasense.scanditsdk.interfaces.ScanditSDKListener;
@@ -155,9 +156,7 @@ public class ScanditSDKDemo extends Activity implements ScanditSDKListener,
                 startActivity(new Intent(ScanditSDKDemo.this, 
                         ScanditSDKSampleBarcodeActivity.class));
             }
-        });
-        
-      
+        });        
 	}
 	
 	@Override
