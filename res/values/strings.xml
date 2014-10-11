@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <string name="app_name">ScanditSDK</string>
+
+    <string name="app_name">MigroZept</string>
     <string name="version">4.2.1</string>
+    <string name="title_activity_recipe_list">RecipeListActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>
